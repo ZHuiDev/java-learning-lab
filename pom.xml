@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>learning.java</groupId>
+  <artifactId>java-learning-lab</artifactId>
+  <version>1.0.0</version>
+  <name>Java 进阶工坊</name>
+  <description>校园图书借阅教学项目，应用代码仅使用 JDK 21。</description>
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+  <build>
+    <finalName>java-learning-lab</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.1</version>
+        <configuration><compilerArgs><arg>--add-modules</arg><arg>jdk.httpserver</arg></compilerArgs></configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.0</version>
+        <executions>
+          <execution>
+            <id>run-contract-checks</id>
+            <phase>test</phase>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <mainClass>lab.TestSuite</mainClass>
+              <classpathScope>test</classpathScope>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.4.2</version>
+        <configuration><archive><manifest><mainClass>lab.Main</mainClass></manifest></archive></configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
